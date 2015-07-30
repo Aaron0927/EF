@@ -1,6 +1,6 @@
 {
 	"name": "选课助手",
-    "version": "1.0.2",
+    "version": "1.0.3",
  	
     "background": { "scripts": ["js/background.js"] }, // 可以使扩展常驻后台
     "permissions": ["notifications", "tabs", "http://*/*", "https://*/*"], // notifications设置桌面提醒
