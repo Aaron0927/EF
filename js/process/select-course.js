@@ -8,7 +8,7 @@ var time_flag = 0; // 标记是一小时的前半小时，还是后半小时
 // 跳转到这个礼拜
 
 parseJSON();
-openCalendar();
+setTimeout("openCalendar()", 400);
 
 function openCalendar()
 {
@@ -116,7 +116,7 @@ function selectCourse()
         //alert("3");
     }
     // TODO : 放在这可能会重复执行
-    setTimeout("window.history.go(-2)",20000);
+    setTimeout("window.history.go(-2)",15000);
 }
 
 function submitClick(arg) // 接受一个时间参数，0表示前半小时，1表示后半小时
