@@ -1,0 +1,82 @@
+{
+	"name": "选课助手",
+    "version": "1.0.2",
+ 	
+    "background": { "scripts": ["js/background.js"] }, // 可以使扩展常驻后台
+    "permissions": ["notifications", "tabs", "http://*/*", "https://*/*"], // notifications设置桌面提醒
+ 
+    // 要在桌面提醒显示的图标，必须用下面的方法申明
+    //"web_accessible_resources": [
+    //    "img/icon48.png"
+    //],
+    "browser_action": {
+        "default_title": "选课助手",
+	    "default_icon": "img/unworking.png",
+	    "default_popup": "popup.html"  
+    },
+    "manifest_version": 2,
+	// 128×128 大小的图标，用与安装过程中以及 Chrome 网上应用店。	
+	// 48×48 大小的图标，用于扩展程序管理页面（chrome://extensions）
+	// 16×16 大小的图标，用于扩展程序页面的收藏夹图标
+
+	"icons": { 
+        "16": "img/icon16.png",
+        "48": "img/icon48.png",
+        "128": "img/icon128.png" 
+    },
+          
+	// 允许用户进行个性化设置，这样就需要向用户提供一个选项页面
+	// 这个就是“红杏”中的跳转页面，这个很重要
+	"options_page":"options.html",
+	
+    // 自动登录
+	"content_scripts": [
+    {
+        "all_frames": true, 
+        "js": [
+            "js/process/loginPage.js"
+        ], 
+        "matches": [
+	        "http://www.englishtown.com/online/member/login2*"
+        ],
+        "run_at": "document_end"
+    }, 
+
+    // 跳转到weekly availability
+    {
+        "all_frames": true, 
+        "js": [
+            "js/process/weekly-available.js"
+        ], 
+        "matches": [
+            "http://www.englishtown.com/axis/home/index?ctr=us" 
+        ], 
+        "run_at": "document_end"
+    },
+
+    // 统计已设置空闲时间
+    {
+        "all_frames": true, 
+        "js": [
+            "js/process/get-available-time.js"
+        ], 
+        "matches": [
+            "http://www.englishtown.com/Axis/availability/teacherweeklyview" 
+        ], 
+        "run_at": "document_end"
+    },
+    
+    // 开始选课
+	{
+        "all_frames": true, 
+        "js": [
+            "js/process/select-course.js"
+        ], 
+        "matches": [
+            "http://www.englishtown.com/Axis/schedule/teacherweeklyview" 
+        ], 
+        "run_at": "document_end"
+    }
+	
+  ]
+}

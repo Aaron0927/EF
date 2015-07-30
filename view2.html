@@ -1,0 +1,9 @@
+<ul>
+    <li data-ng-repeat="pet in pets">{{ pet.name  }} - ${{ pet.price  }}</li>
+    <div ng-controller='ivote'>
+        <button id='yes' {{vote.yes}} ng-click='voteOptionOne()'>是:{{vote.option1}} 票</button>
+        <button id='no' {{vote.no}} ng-click='voteOptionTwo()'>是:{{vote.option2}} 票</button>
+    </div>
+
+</ul>
+  
