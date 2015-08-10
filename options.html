@@ -1,19 +1,32 @@
-<html data-ng-app="myApp">
+<html data-ng-app="loginPage">
     <head>
         <title>选课助手1.0.1</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="js/angular.min.js"></script>
-        <script src="js/angular-route.min.js"></script>
-        <script src="js/angular-resource.min.js"></script>
-        <script src="js/options/options.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <script src="js/libs/angular.min.js"></script>
+        <script src="js/libs/angular-route.min.js"></script>
+        <script src="js/libs/angular-resource.min.js"></script>
+        <script src="js/libs/bootstrap.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/login.css"/>
     </head>
     <body>
-
-        <input type="text" id="city"/>
-        <input type="button" id="save" value="保存"/>
-
-        <div data-ng-view></div>
-        <a href="#/">Home</a> | <a href="#/price">Price</a>
+        <div class="container font-hei" ng-controllers="loginPageController" ng-cloak>
+            <div class="heading">
+                <h1 class="font-kai text-center text-danger ng-binding">EF Helper</h1>
+                <h2 class="font-kai text-center text-muted ng-binding">选课本该如此简单</h2>
+            </div>
+            <div class="login-box">
+                <a class="tab col-xs-6"
+                    ng-class="{active: $root.step=='register'}"
+                    ng-click="$root.step='register'">注册</a>
+                <a class="tab col-xs-6"
+                    ng-class="{active: $root.step=='login'}"
+                    ng-click="$root.step='login'">登录</a>
+            </div>
+            <div data-ng-view></div>
+            <p class="small text-muted text-center">如有问题，请联系官方QQ:1002797280</p>
+        </div>
+        <a href="#/login">Home</a> | <a href="#/register">register</a>
+        <script src="js/options/options.js"></script>
     </body>
 </html>

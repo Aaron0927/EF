@@ -1,7 +1,7 @@
 // JavaScript Document
 
-var time = "3"; // 设置选课日期
-var date = "03";
+var time = "10"; // 设置选课日期
+var date = "10";
 
 // 跳转到这个礼拜
 openCalendar();
@@ -11,9 +11,11 @@ function openCalendar()
     // 打开日历
     if (document.querySelector(".calendar") != null) {
         document.querySelector(".calendar").click();
-        toNextMonth();
+        //toNextMonth();
+        toThisWeek();
     } else {
         setTimeout("toThisWeek()", 400);
+        //toThisWeek();
     }
 }
 

@@ -1,94 +1,48 @@
-<div class="box">
-
-    <div class="login-box">
-
-        <div class="login-title text-center">
-
-            <h1><small>登录</small></h1>
-
-        </div>
-
-        <div class="login-content ">
-
-            <div class="form">
-
-                <form action="#" method="post">
-
-                    <div class="form-group">
-
-                        <div class="col-xs-12  ">
-
-                            <div class="input-group">
-
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-
-                                <input type="text" id="username" name="username" class="form-control" placeholder="用户名">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <div class="col-xs-12  ">
-
-                            <div class="input-group">
-
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-
-                                <input type="text" id="password" name="password" class="form-control" placeholder="密码">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group form-actions">
-
-                        <div class="col-xs-4 col-xs-offset-4 ">
-
-                            <button type="submit" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-off"></span> 登录</button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <div class="col-xs-6 link">
-
-                            <p class="text-center remove-margin"><small>忘记密码？</small> <a href="javascript:void(0)" ><small>找回</small></a>
-
-                            </p>
-
-                        </div>
-
-                        <div class="col-xs-6 link">
-
-                            <p class="text-center remove-margin"><small>还没注册?</small> <a href="javascript:void(0)" ><small>注册</small></a>
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </form>
-
-            </div>
+<form name="login" class="login step" ng-submit="doLogin()" novalidate>
+    <div class="form-group" ng-class="{'is-loading': checkingName}" form-state="login.name">
+        <div class="errors">
+            <span class="error" ng-if="login.name.$error.required" translate="login.errors.name_required"></span>
+            <span class="error" ng-if="login.name.$error.format" translate="login.errors.format"></span>
+            <span class="error" ng-if="login.name.$error.server" translate="login.errors.server"></span>
+            <span class="error" ng-if="login.name.$error.notExisted" translate="login.errors.notExisted"></span>
 
         </div>
-
+        <label translate="login.account">帐号</label>
+        <input name="name" class="form-control input-lg font-kai"
+               type="text" placeholder="请输入 邮箱/手机号码"
+               ng-model="name"
+               focus-bind="focuses.name"
+               ng-disabled="checkingName || submitting"
+               ng-blur="checkNameExistence()"
+               ng-change="clearFormValidity()"
+               ui-validate="{format: '$root.validateNameFormat($value)'}"
+               required
+            >
+        <i class="form-control-feedback glyphicon glyphicon-ok"></i>
+        <img class="form-control-feedback loading" src="/img/loading-bars-gray.svg" alt="loading"/>
     </div>
 
-</div>
+    <div class="form-group" form-state="login.password">
+        <div class="errors">
+            <span class="error" ng-if="login.password.$error.required">{{"login.errors.password_required"|translate}}</span>
+            <span class="error" ng-if="login.password.$error.minlength">{{"login.errors.minlength"|translate}}</span>
+            <span class="error" ng-if="login.password.$error.mismatch">{{"login.errors.mismatch"|translate}}</span>
+        </div>
+        <label translate="login.password">密码</label>
+        <input name="password" type="password" class="form-control input-lg font-kai"
+               placeholder="请输入密码"
+               ng-model="password"
+               focus-bind="focuses.password"
+               ng-disabled="submitting"
+               ng-change="clearFormValidity()"
+               required
+               ng-minlength="6">
+    </div>
 
+    <button type="submit" class="btn btn-block btn-primary btn-lg" ng-disabled="submitting">
+        <span ng-hide="submitting">登录</span>
+    </button>
+    <a ng-href="{{resetPasswordUrl}}" class="pull-right" target="_blank">找回密码</a>
+    <div class="clearfix"></div>
+</form>
 
-
-<div style="text-align:center;">
-
-
-</div>

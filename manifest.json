@@ -1,5 +1,5 @@
 {
-	"name": "选课助手",
+	"name": "EF Helper",
     "version": "1.0.3",
  	
     "background": { "scripts": ["js/background.js"] }, // 可以使扩展常驻后台
@@ -10,7 +10,7 @@
     //    "img/icon48.png"
     //],
     "browser_action": {
-        "default_title": "选课助手",
+        "default_title": "EF Helper",
 	    "default_icon": "img/unworking.png",
 	    "default_popup": "popup.html"  
     },

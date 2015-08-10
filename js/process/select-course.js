@@ -1,9 +1,9 @@
 // JavaScript Document
 
-var time = "3"; // 设置选课日期
-var date = "03";
+var time = "10"; // 设置选课日期
+var date = "10";
 var avaTime = new Array(48 * 7); // 将整个时间表分成48 × 7 的半小时，没有赋值就是undefined
-var baseTime = new Date("2015/08/03 00:00:00"); // 基准时间
+var baseTime = new Date("2015/08/10 00:00:00"); // 基准时间
 var time_flag = 0; // 标记是一小时的前半小时，还是后半小时
 // 跳转到这个礼拜
 
@@ -15,7 +15,8 @@ function openCalendar()
     // 打开日历
     if (document.querySelector(".calendar") != null) {
         document.querySelector(".calendar").click();
-        toNextMonth();
+        //toNextMonth();
+        toThisWeek();
     } else {
         setTimeout("toThisWeek()", 400);
     }
@@ -116,7 +117,7 @@ function selectCourse()
         //alert("3");
     }
     // TODO : 放在这可能会重复执行
-    setTimeout("window.history.go(-2)",15000);
+    setTimeout("window.history.go(-2)",18000);
 }
 
 function submitClick(arg) // 接受一个时间参数，0表示前半小时，1表示后半小时

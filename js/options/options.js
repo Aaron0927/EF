@@ -1,36 +1,27 @@
-var myApp = angular.module('myApp', ['ngRoute']);
-myApp.controller('loginController', function($scope){
-    
-    $scope.pets = [
-        {name: 'Dog', price: 200},
-        {name: 'Cat', price: 220},
-        {name: 'Rabbit', price: 180},
-        {name: 'Parrot', price: 240}
-    ];
+var loginPage = angular.module('loginPage', ['ngRoute']);
+loginPage.controller('loginController', function($scope){
+});
+
+loginPage.controller('registerController', function($rootScope){
+    $rootScope.step = "register";
 
 });
 
-myApp.controller('petController1', function($scope){
-    $scope.pets = [
-        {name: 'Dog', price: 200},
-        {name: 'Cat', price: 220},
-        {name: 'Rabbit', price: 180},
-        {name: 'Parrot', price: 240}
-    ];
+(function(){loginPage.controller('loginPageController', function($rootScope){
+    $rootScope.step = "register";
+});}).call(this);
 
-});
-
-myApp.config(function($routeProvider){
+loginPage.config(function($routeProvider){
         $routeProvider
-        .when('/', {
+        .when('/login', {
             controller: 'loginController',
             templateUrl: 'html/login.html'
         })
-        .when('/price', {
-            controller: 'petController1',
-            templateUrl: 'view2.html'
+        .when('/register', {
+            controller: 'registerController',
+            templateUrl: 'html/register.html'
         })
-        .otherwise({redirectTo: '/'});
+        .otherwise({redirectTo: '/register'});
 
 });
 
